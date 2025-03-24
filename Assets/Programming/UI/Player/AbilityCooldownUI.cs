@@ -7,6 +7,8 @@ using UnityEngine.UI;
 
 public class AbilityCooldownUI : MonoBehaviour
 {
+    [SerializeField] private GameObject image;
+    
     //ui stuff
     private Slider cooldownBar;
     private TextMeshProUGUI cooldownText;
@@ -30,6 +32,8 @@ public class AbilityCooldownUI : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        image.SetActive(false);
+        
         //set cooldown bar and text
         cooldownBar = GetComponent<Slider>();
         cooldownText = GetComponentInChildren<TextMeshProUGUI>();
@@ -79,6 +83,7 @@ public class AbilityCooldownUI : MonoBehaviour
     private IEnumerator TriggerCooldown()
     {
         inCooldown = true;
+        image.SetActive(true);
 
         float currentTime = cooldownTime; //timer for the cooldown
         float timeIncrements = 0.1f; //how many seconds between current time being updated
@@ -108,5 +113,6 @@ public class AbilityCooldownUI : MonoBehaviour
 
         abilityInUse = false; //no longer using ability
         inCooldown = false;
+        image.SetActive(false);
     }
 }

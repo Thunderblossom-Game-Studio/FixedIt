@@ -6,10 +6,10 @@ public class PlayerRotation : MonoBehaviour
 {
     void Update()
     {
-        if(!UIManager.Instance.inGameMenu && !UIManager.Instance.inDialogueMenu)
-        {
-            HandleRotationInput();
-        }
+        //if(!UIManager.Instance.inGameMenu && !UIManager.Instance.inDialogueMenu)
+        //{
+        //    HandleRotationInput();
+        //}
     }
 
     void HandleRotationInput() //Rotate player to face mouse.
