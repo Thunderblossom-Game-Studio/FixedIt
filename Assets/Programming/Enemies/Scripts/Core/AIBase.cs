@@ -162,9 +162,15 @@ public class AIBase : MonoBehaviour
 	protected virtual void Start()
 	{
 		onSpawn?.Invoke(transform); // We call the AI on spawn if there are any listeners.
+		
+		GameManager.Instance.RegisterAI(this);
 	}
 	#endregion
 
+	private void OnDestroy()
+	{
+		GameManager.Instance.RemoveAI(this);
+	}
 
 
 	// #region Update

@@ -1,70 +1,48 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
-
-//by    _                 _ _                     
-//     | |               (_) |                    
-//   __| | ___  _ __ ___  _| |__  _ __ ___  _ __  
-//  / _` |/ _ \| '_ ` _ \| | '_ \| '__/ _ \| '_ \ 
-// | (_| | (_) | | | | | | | |_) | | | (_) | | | |
-//  \__,_|\___/|_| |_| |_|_|_.__/|_|  \___/|_| |_|
-
-
-
 public class PlayerTriggerEvent : MonoBehaviour
 {
-	[Header("Settings"), SerializeField]
-	private bool triggerOnce = false;
+	[Header("Settings")]
+	[SerializeField] private bool triggerOnce = false;
 
 	[Header("Events")]
-	public UnityEvent onTriggerEnter;
-	public UnityEvent onTriggerStay;
-	public UnityEvent onTriggerExit;
+	[SerializeField] private UnityEvent onTriggerEnter;
+	[SerializeField] private UnityEvent onTriggerStay;
+	[SerializeField] private UnityEvent onTriggerExit;
 
-	private bool triggered = false;
-
-
+	private bool _triggered = false;
+	
 	void OnTriggerEnter(Collider other)
 	{
-		if (!other.gameObject.CompareTag("Player")) return;
-
-		if (triggerOnce && triggered)
+		if (!other.gameObject.CompareTag("Player") || triggerOnce && _triggered)
 		{
 			return;
 		}
 
-		triggered = true;
-
+		_triggered = true;
 		onTriggerEnter?.Invoke();
 	}
 
 	void OnTriggerStay(Collider other)
 	{
-		if (!other.gameObject.CompareTag("Player")) return;
-
-		if (triggerOnce && triggered)
+		if (!other.gameObject.CompareTag("Player") || triggerOnce && _triggered)
 		{
 			return;
 		}
 
-		triggered = true;
-
+		_triggered = true;
 		onTriggerStay?.Invoke();
 	}
 
 	void OnTriggerExit(Collider other)
 	{
-		if (!other.gameObject.CompareTag("Player")) return;
-
-		if (triggerOnce && triggered)
+		if (!other.gameObject.CompareTag("Player") || triggerOnce && _triggered)
 		{
 			return;
 		}
 
-		triggered = true;
-
+		_triggered = true;
 		onTriggerExit?.Invoke();
 	}
 }
