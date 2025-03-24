@@ -42,7 +42,6 @@ public class UIManager : MonoBehaviour
                                 // now change the tooltips to the ones in the array.?// 
                                 //on game menu press get random number between 0 and length of tooltipnames-1 (the -1 is because array indexing starts at 0)
                                 //set tooltip name to tooltipnames(randomnumber)
-                                //set tooltip text to tooltiptexts(randomnumber)
 
 
     private void Awake()
@@ -72,8 +71,6 @@ public class UIManager : MonoBehaviour
     private void EnterMenu()
     {
         Cursor.lockState = CursorLockMode.None;
-
-
         DisableAllMenus(); //makes sure the menus are all disabled after changin a scene
     }
 
@@ -90,7 +87,6 @@ public class UIManager : MonoBehaviour
         gameMenuObj.SetActive(false);
         optionsObj.SetActive(false);
         controlsObj.SetActive(false);
-
         
         inGameMenu = false;
     }
@@ -167,7 +163,7 @@ public class UIManager : MonoBehaviour
             EnterMenu();
 
             inGameMenu = true;
-            GameObject.FindGameObjectWithTag("Player").GetComponent <PlayerInput>().enabled = false;
+            GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerInput>().enabled = false;
             gameMenuObj.SetActive(true);
         }
     }
